@@ -17,13 +17,13 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
+        <!--<th>-->
+        <!--  ID-->
+        <!--</th>-->
 
-        <th>
-          User
-        </th>
+        <!--<th>-->
+        <!--  User-->
+        <!--</th>-->
 
         <th>
           Movie
@@ -41,18 +41,18 @@
         </th>
       </tr>
 
-      <% @bookmarks.each do |bookmark| %>
+      <% @bookmarks.where(user_id: current_user.id).each do |bookmark| %>
       <tr>
-        <td>
-          <%= bookmark.id %>
-        </td>
+        <!--<td>-->
+        <!--  <%= bookmark.id %>-->
+        <!--</td>-->
+
+        <!--<td>-->
+        <!--  <%= bookmark.user_id %>-->
+        <!--</td>-->
 
         <td>
-          <%= bookmark.user_id %>
-        </td>
-
-        <td>
-          <%= bookmark.movie_id %>
+          <a href="/movies/<%= bookmark.movie_id %>"><%= Movie.find(bookmark.movie_id).title %></a>
         </td>
 
         <td>
@@ -63,10 +63,11 @@
         </td>
 
         <td>
-          <a href="/bookmarks/<%= bookmark.id %>">
-            Show details
+          <a href="/delete_bookmark/<%= bookmark.id %>">
+            Delete
           </a>
         </td>
+        
       </tr>
       <% end %>
     </table>
